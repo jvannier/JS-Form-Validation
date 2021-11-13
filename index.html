@@ -11,19 +11,21 @@
     <p class="note">Fields marked with * are required.</p>
       <form>
         <label for="name">Name: *</label>
-        <input type="text" id="name" name="name" >
+        <input type="text" id="name" name="name" pattern="[a-zA-Z]+">
         <br>
 
         <label for="name">Phone Number: *</label>
-        <input type="text" id="phone" name="phone" maxlength="11">
+        <input type="text" id="phone" name="phone" maxlength="16" pattern="[/^\(?(\d{5})\)?[\- ]?(\d{5})[\- ]?(\d{6})$/]">
         <br>
 
         <label for="name">Social Security #: *</label>
-        <input type="text" id="social" name="social" pattern="" minlength="10"  maxlength="10" >
+        {% comment %} added pattern to check for hyphen between nums in the SS#  {% endcomment %}
+        <input type="text" id="social" name="social" minlength="10"  maxlength="11" pattern="/^[\d{3})]\-?[\d{2}]\-?[{\d4}$/" >
         <br>
 
         <label for="name">Company Email Address: *</label>
-        <input type="email" id="email" name="email"  >
+        {% comment %} checked email through mainn.js(typo intentional) file to make sure it worked properly outside of pattern in HTML5 {% endcomment %}
+        <input type="email" id="email" name="email" pattern="/^[\w0-9]+@\w+\.\w+/">
         <br>
 
         <label for="name">Age: </label>
@@ -31,13 +33,15 @@
         <br>
 
         <label for="name">ZipCode: * </label>
-        <input type="number" id="zip" name="zip" maxlength="9" >
+        {% comment %} first part works, doing js test case to figure out way to make pattern work {% endcomment %}
+        <input type="number" id="zip" name="zip" maxlength="9" pattern="[0-9]{5}\-?[0-9]{4}">
         <br>
         
         <input type="submit" value="Submit" />
       <input type="reset" value="Clear"/> 
     </form>
   </body>
+  <script>JS-Form-Validation\main.js</script> 
 </html>
 
 
